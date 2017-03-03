@@ -45,7 +45,7 @@ public class TestActivity extends BaseActivity<TestPresenter> implements TestVie
 
     public void clickMe(View view)
     {
-        displayError("Hayee m mar jaaaa...!");
+        displayError("Snack bar.........");
     }
 
     @Override
@@ -53,5 +53,7 @@ public class TestActivity extends BaseActivity<TestPresenter> implements TestVie
     {
 //        initialize all views here..
         ((Button) findViewById(R.id.btnTest)).setText("Test to change text (Activity)");
+
+        setupToolbar("Gagan");
     }
 }
