@@ -14,15 +14,12 @@ import java.util.List;
 public abstract class SuperAdapterG<T, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH>
 {
 
-    List<T>   modelList;
-    Class<VH> mViewHolderClass;
+    List<T> modelList;
 
-    public SuperAdapterG(List<T> modelClass, Class<VH> viewHolderClass)
+    public SuperAdapterG(List<T> modelClass)
     {
         modelList = modelClass;
-        mViewHolderClass = viewHolderClass;
     }
-
 
     @Override
     public int getItemCount()
@@ -31,11 +28,11 @@ public abstract class SuperAdapterG<T, VH extends RecyclerView.ViewHolder> exten
     }
 
 
-    @Override
-    public int getItemViewType(int position)
-    {
-        return position;
-    }
+//    @Override
+//    public int getItemViewType(int position)
+//    {
+//        return position;
+//    }
 
     public T getItem(int position)
     {
@@ -49,7 +46,7 @@ public abstract class SuperAdapterG<T, VH extends RecyclerView.ViewHolder> exten
         ViewGroup view = (ViewGroup) LayoutInflater.from(parent.getContext()).inflate(getLayout(), parent, false);
         try
         {
-            Constructor<VH> constructor = mViewHolderClass.getConstructor(View.class);
+            Constructor<VH> constructor = getViewHolder().getConstructor(View.class);
             return constructor.newInstance(view);
         }
         catch (Exception e)
@@ -66,9 +63,41 @@ public abstract class SuperAdapterG<T, VH extends RecyclerView.ViewHolder> exten
     }
 
 
+    public void removeItem(int position)
+    {
+        if (position < modelList.size())
+        {
+            modelList.remove(position);
+            notifyItemRemoved(position);
+        }
+    }
+
+    public void addItem(int position, T data)
+    {
+        modelList.add(position, data);
+        notifyItemInserted(position);
+    }
+
+    public void addItems(List<T> data)
+    {
+        modelList.addAll(data);
+        notifyItemRangeInserted(modelList.size() - data.size(), data.size());
+    }
+
+
+    public void notifyDataChangesG(List<T> dataList)
+    {
+        modelList.clear();
+        modelList.addAll(dataList);
+        notifyDataSetChanged();
+    }
+
+
     abstract protected void populateViewHolderG(VH viewHolder, T model, int position);
 
     abstract protected int getLayout();
+
+    abstract protected Class<VH> getViewHolder();
 }
 
 

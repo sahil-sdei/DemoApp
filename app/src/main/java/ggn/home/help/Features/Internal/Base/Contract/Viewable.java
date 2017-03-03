@@ -7,7 +7,7 @@ public interface Viewable<T>
 {
 
     /**
-     * initialize all views
+     * initialize all views here.
      */
     void initViews();
 
