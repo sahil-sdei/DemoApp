@@ -71,9 +71,9 @@ public abstract class BaseActivity<T extends Presentable> extends AppCompatActiv
     @Override
     public void displayError(String message)
     {
-        if (getParentView() != null)
+        if (setParentView() != null)
         {
-            Snackbar.make(getParentView(), message, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(setParentView(), message, Snackbar.LENGTH_LONG).show();
         }
     }
 
@@ -115,7 +115,7 @@ public abstract class BaseActivity<T extends Presentable> extends AppCompatActiv
 
     protected abstract int getLayoutId();
 
-    protected abstract View getParentView();
+    protected abstract View setParentView();
 
     protected abstract void onCreateActivityG();
 }
