@@ -29,7 +29,7 @@ public class TestActivity extends BaseActivity<TestPresenter> implements TestVie
     }
 
     @Override
-    protected View getParentView()
+    protected View setParentView()
     {
         return findViewById(R.id.activity_test);
     }
@@ -50,6 +50,6 @@ public class TestActivity extends BaseActivity<TestPresenter> implements TestVie
     public void initViews()
     {
 //        initialize all views here..
-        ((Button) getParentView().findViewById(R.id.btnTest)).setText("Test to change text (Activity)");
+        ((Button) findViewById(R.id.btnTest)).setText("Test to change text (Activity)");
     }
 }
