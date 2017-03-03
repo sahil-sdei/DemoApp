@@ -39,7 +39,7 @@ public abstract class BaseActivity<T extends Presentable> extends AppCompatActiv
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
+        setContentView(setLayoutId());
         onCreateActivityG();
         getPresenter().onViewCreated();
     }
@@ -113,9 +113,16 @@ public abstract class BaseActivity<T extends Presentable> extends AppCompatActiv
         this.presenter = presenter;
     }
 
-    protected abstract int getLayoutId();
+    protected abstract int setLayoutId();
 
-    protected abstract View setParentView();
+    protected View setParentView()
+    {
+        return findViewById(android.R.id.content);
+    }
 
+    /**
+     * injectPresenter( @link Presentable);
+     * attachView(this);
+     */
     protected abstract void onCreateActivityG();
 }

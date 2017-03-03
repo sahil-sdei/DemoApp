@@ -11,7 +11,6 @@ import ggn.home.help.R;
 
 public class TestActivity extends BaseActivity<TestPresenter> implements TestView
 {
-
     public static <T> void start(Context context, T data)
     {
         Intent starter = new Intent(context, TestActivity.class);
@@ -20,19 +19,21 @@ public class TestActivity extends BaseActivity<TestPresenter> implements TestVie
             starter.putExtra("constant here", (Parcelable) (data));
         }
         context.startActivity(starter);
+
     }
 
     @Override
-    protected int getLayoutId()
+    protected int setLayoutId()
     {
         return R.layout.activity_test;
     }
 
-    @Override
-    protected View setParentView()
-    {
-        return findViewById(R.id.activity_test);
-    }
+//    @Override
+//    protected View setParentView()
+//    {
+//        return findViewById(R.id.activity_test);
+//    }
+
 
     @Override
     protected void onCreateActivityG()
@@ -40,6 +41,7 @@ public class TestActivity extends BaseActivity<TestPresenter> implements TestVie
         injectPresenter(new TestPresenter());
         getPresenter().attachView(this);
     }
+
 
     public void clickMe(View view)
     {
