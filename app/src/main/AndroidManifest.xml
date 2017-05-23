@@ -20,7 +20,12 @@
         </activity>
         <activity android:name=".Features.TestPackage.TestActivity">
         </activity>
-
+        <activity
+            android:name=".UtilsG.Anim.CircularReveal.CircularRevealActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:noHistory="true"
+            android:theme="@style/FullscreenTheme">
+        </activity>
 
 
 
