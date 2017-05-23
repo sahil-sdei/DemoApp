@@ -19,7 +19,9 @@ public class BasePresenter<T extends Viewable> implements Presentable<T>
     public void onViewCreated()
     {
 //        views are created ,now its time to initialize them..
-        getView().initViews();
+        if (getView() != null) {
+            getView().initViews();
+        }
     }
 
     @Override

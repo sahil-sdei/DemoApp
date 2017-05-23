@@ -5,11 +5,14 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import ggn.home.help.Features.Internal.Base.Contract.Presentable;
 import ggn.home.help.Features.Internal.Base.Contract.Viewable;
 import ggn.home.help.R;
+import ggn.home.help.UtilsG.SharedPrefHelper;
 
 /**
  * Created by G-Expo on 03 Mar 2017.
@@ -28,11 +31,38 @@ public abstract class BaseActivity<T extends Presentable> extends AppCompatActiv
         getPresenter().onStart();
     }
 
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        getPresenter().onResume();
+    }
+
+    @Override
+    protected void onPause()
+    {
+        getPresenter().onPause();
+        super.onPause();
+    }
+
     public void setupToolbar(String title)
     {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(title);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ((TextView) toolbar.findViewById(R.id.toolbar_title)).setText(title);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if (item.getItemId() == android.R.id.home)
+        {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -43,6 +73,7 @@ public abstract class BaseActivity<T extends Presentable> extends AppCompatActiv
         onCreateActivityG();
         getPresenter().onViewCreated();
     }
+
 
     /**
      * {@inheritDoc}
@@ -111,6 +142,13 @@ public abstract class BaseActivity<T extends Presentable> extends AppCompatActiv
     public void injectPresenter(T presenter)
     {
         this.presenter = presenter;
+    }
+
+
+    @Override
+    public SharedPrefHelper getLocalData()
+    {
+        return new SharedPrefHelper(getApplicationContext());
     }
 
     protected abstract int setLayoutId();

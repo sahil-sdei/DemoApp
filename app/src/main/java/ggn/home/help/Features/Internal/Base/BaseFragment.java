@@ -1,6 +1,8 @@
 package ggn.home.help.Features.Internal.Base;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -10,13 +12,13 @@ import android.view.ViewGroup;
 
 import ggn.home.help.Features.Internal.Base.Contract.Presentable;
 import ggn.home.help.Features.Internal.Base.Contract.Viewable;
-
+import ggn.home.help.UtilsG.SharedPrefHelper;
 
 public abstract class BaseFragment<T extends Presentable> extends Fragment implements Viewable<T>
 {
-    protected T    presenter;
-    protected View view;
-
+    protected T                presenter;
+    protected View             view;
+    protected SharedPrefHelper sharedPrefHelper;
 
     /**
      * {@inheritDoc}
@@ -28,7 +30,6 @@ public abstract class BaseFragment<T extends Presentable> extends Fragment imple
         getPresenter().onStart();
     }
 
-
     /**
      * {@inheritDoc}
      */
@@ -38,6 +39,21 @@ public abstract class BaseFragment<T extends Presentable> extends Fragment imple
         super.onCreate(savedInstanceState);
         onCreateFragmentG();
         setRetainInstance(true);
+    }
+
+    @Override
+    public SharedPrefHelper getLocalData()
+    {
+        if (sharedPrefHelper == null) {
+            sharedPrefHelper = new SharedPrefHelper(getActivityG());
+        }
+        return sharedPrefHelper;
+    }
+
+    @Override
+    public Context getActivityG()
+    {
+        return getActivity();
     }
 
     /**
@@ -88,8 +104,16 @@ public abstract class BaseFragment<T extends Presentable> extends Fragment imple
     @Override
     public void onDestroy()
     {
+        getPresenter().detachView();
         presenter = null;
         super.onDestroy();
+    }
+
+    @Override
+    public void onResume()
+    {
+        getPresenter().onResume();
+        super.onResume();
     }
 
     /**
@@ -98,12 +122,10 @@ public abstract class BaseFragment<T extends Presentable> extends Fragment imple
     @Override
     public void displayError(String message)
     {
-        if (getParentView() != null)
-        {
+        if (getParentView() != null) {
             Snackbar.make(getParentView(), message, Snackbar.LENGTH_LONG).show();
         }
     }
-
 
     public View getParentView()
     {
@@ -146,6 +168,7 @@ public abstract class BaseFragment<T extends Presentable> extends Fragment imple
         this.presenter = presenter;
     }
 
+    @LayoutRes
     protected abstract int getLayoutId();
 
     protected abstract void onCreateFragmentG();

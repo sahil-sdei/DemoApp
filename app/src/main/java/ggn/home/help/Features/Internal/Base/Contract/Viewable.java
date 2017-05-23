@@ -1,5 +1,9 @@
 package ggn.home.help.Features.Internal.Base.Contract;
 
+import android.content.Context;
+
+import ggn.home.help.UtilsG.SharedPrefHelper;
+
 /**
  * Android contract for every MVP View
  */
@@ -10,6 +14,10 @@ public interface Viewable<T>
      * initialize all views here.
      */
     void initViews();
+
+    SharedPrefHelper getLocalData();
+
+    Context getActivityG();
 
     /**
      * Every Viewable must be able to access to its attached Presenter

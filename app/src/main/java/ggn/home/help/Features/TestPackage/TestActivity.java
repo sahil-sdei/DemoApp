@@ -14,8 +14,7 @@ public class TestActivity extends BaseActivity<TestPresenter> implements TestVie
     public static <T> void start(Context context, T data)
     {
         Intent starter = new Intent(context, TestActivity.class);
-        if (data != null)
-        {
+        if (data != null) {
             starter.putExtra("constant here", (Parcelable) (data));
         }
         context.startActivity(starter);
@@ -34,14 +33,12 @@ public class TestActivity extends BaseActivity<TestPresenter> implements TestVie
 //        return findViewById(R.id.activity_test);
 //    }
 
-
     @Override
     protected void onCreateActivityG()
     {
         injectPresenter(new TestPresenter());
         getPresenter().attachView(this);
     }
-
 
     public void clickMe(View view)
     {
@@ -55,5 +52,11 @@ public class TestActivity extends BaseActivity<TestPresenter> implements TestVie
         ((Button) findViewById(R.id.btnTest)).setText("Test to change text (Activity)");
 
         setupToolbar("Gagan");
+    }
+
+    @Override
+    public Context getActivityG()
+    {
+        return TestActivity.this;
     }
 }
