@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="binder"
+            type="ggn.home.help.features.signIn.SignInBinder" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar_layout" />
+
+            <LinearLayout
+                android:id="@+id/linearLayoutForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toolbar"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin20dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/margin45dp"
+                android:paddingRight="@dimen/margin45dp">
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/editTextUserName"
+                        style="@style/editTextTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/margin5dp"
+                        android:hint="@string/email"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:maxLength="30"
+                        android:padding="@dimen/margin15dp"
+                        android:text="@={binder.username}"
+                        android:textColor="@color/black"
+                       />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin10dp">
+
+                    <EditText
+                        android:id="@+id/editTextPassword"
+                        style="@style/editTextTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/margin5dp"
+                        android:hint="@string/password"
+                        android:imeOptions="actionDone"
+                        android:maxLength="20"
+                        android:padding="@dimen/margin15dp"
+                        android:singleLine="true"
+                        android:text="@={binder.password}"
+                        android:textColor="@color/black"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/textViewForgotPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:padding="@dimen/margin10dp"
+                    android:text="@string/forgot_password"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text12sp"
+                     />
+
+                <Button
+                    android:id="@+id/buttonLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:onClick="@{binder::signInClicked}"
+                    android:text="@string/login"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text18sp"
+                     />
+
+                <TextView
+                    android:id="@+id/textViewRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginTop="@dimen/margin10dp"
+                    android:gravity="center|bottom"
+                    android:padding="@dimen/margin15dp"
+                    android:text="@string/don_t_have_an_account_register"
+                    android:textSize="@dimen/text14sp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin20dp"
+                    android:text="@string/or_signin_with"
+                    android:textSize="@dimen/text16sp"
+                     />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/margin10dp"
+                    android:orientation="horizontal">
+
+                    <com.facebook.login.widget.LoginButton
+                        android:id="@+id/loginButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/buttonFacebook"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimaryDark"
+                        android:gravity="center"
+                        android:onClick="googleSignIn"
+                        android:layout_marginRight="@dimen/margin20dp"
+                        android:text="Facebook"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text18sp"
+                        />
+
+                    <Button
+                        android:id="@+id/buttonGoogle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorAccent"
+                        android:gravity="center"
+                        android:onClick="googleSignIn"
+                        android:text="@string/google"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text18sp"
+                         />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+</layout>

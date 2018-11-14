@@ -5,7 +5,20 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="facebook_app_id">1513162652315211</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="please_enter_email">Please enter email.</string>
+    <string name="please_enter_valid_email">Please enter valid email.</string>
+    <string name="please_enter_password">Please enter password.</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">Log in</string>
+    <string name="don_t_have_an_account_register">Don\'t have an account? Sign Up Now</string>
+    <string name="or_signin_with">Login with</string>
+    <string name="google">Google</string>
+    <string name="fetching_facebook_information">Getting facebook information.</string>
+    <string name="please_wait">Please wait</string>
 </resources>

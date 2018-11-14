@@ -2,7 +2,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="ggn.home.help.Features.TestPackage.TestFragment">
+             tools:context="ggn.home.help.features.TestPackage.TestFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <Button android:layout_width="match_parent"
