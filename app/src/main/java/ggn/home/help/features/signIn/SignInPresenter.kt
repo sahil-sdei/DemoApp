@@ -8,7 +8,6 @@ import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import ggn.home.help.R
 import ggn.home.help.features.base.BasePresenter
-import org.json.JSONObject
 
 class SignInPresenter : BasePresenter<SignInView>(), SignInBinder {
     override val username = ObservableField<String>()

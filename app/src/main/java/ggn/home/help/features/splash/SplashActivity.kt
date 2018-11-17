@@ -1,7 +1,6 @@
 package ggn.home.help.features.splash
 
 import android.content.Context
-import com.facebook.CallbackManager
 import ggn.home.help.R
 import ggn.home.help.features.base.BaseActivityNoBinding
 import ggn.home.help.features.signIn.SignInActivity

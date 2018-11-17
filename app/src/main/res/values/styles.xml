@@ -42,4 +42,8 @@
         <item name="android:textColorHint">@color/greyDark</item>
         <item name="android:lines">1</item>
     </style>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/white</item>
+    </style>
 </resources>

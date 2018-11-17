@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task
 import ggn.home.help.R
 import ggn.home.help.databinding.ActivitySignInBinding
 import ggn.home.help.features.base.BaseActivity
+import ggn.home.help.features.signUp.SignUpActivity
 import ggn.home.help.utils.UtillsG
 import ggn.home.help.web.models.User
 import java.util.*
@@ -25,9 +26,9 @@ import java.util.*
 
 class SignInActivity : BaseActivity<ActivitySignInBinding, SignInPresenter>(), SignInView, View.OnClickListener {
 
-    var callbackManager: CallbackManager? = null
-    var mGoogleSignInClient: GoogleSignInClient? = null
-    var RC_SIGN_IN = 100
+    private var callbackManager: CallbackManager? = null
+    private var mGoogleSignInClient: GoogleSignInClient? = null
+    private var RC_SIGN_IN = 100
 
     override fun setLayoutId(): Int {
         return R.layout.activity_sign_in
@@ -105,8 +106,8 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInPresenter>(), S
         return super.onOptionsItemSelected(item)
     }
 
-    fun signUp(view: View) {
-//        SignUpActivity.Companion.start(activityG)
+    private fun signUp(view: View) {
+        SignUpActivity.start(activityG)
         finish()
     }
 
@@ -121,7 +122,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInPresenter>(), S
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
-        }else{
+        } else {
             callbackManager?.onActivityResult(requestCode, resultCode, data)
         }
     }
